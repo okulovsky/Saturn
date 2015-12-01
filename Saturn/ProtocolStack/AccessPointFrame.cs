@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace Saturn.ProtocolStack
 {
-    public interface IPackage { }
-
-    public class Package<T> : IPackage
+    [EncodingBinaryFrame(typeof(JsonSerializer))]
+    public class AccessPointFrame
     {
         public readonly double Timestamp;
         public readonly string Sender;
         public readonly string AccessPoint;
-        public readonly T Message;
-
-        public Package(double timestamp, string sender, string accessPoint, T message)
+        [EntryField]
+        public readonly object Entry;
+        public AccessPointFrame(double timestamp, string sender, string accessPoint, object entry)
         {
             Timestamp = timestamp;
             Sender = sender;
             AccessPoint = accessPoint;
-            Message = message;
+            Entry = entry;
         }
     }
+
+  
 }

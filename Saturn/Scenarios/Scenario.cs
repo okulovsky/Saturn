@@ -19,8 +19,4 @@ namespace Saturn.Scenarios
 
         public static Random Random = new Random(1);
     }
-
-
-
-
 }

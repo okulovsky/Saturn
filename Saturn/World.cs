@@ -11,8 +11,8 @@ namespace Saturn
     {
         public readonly Dictionary<string, string> UserToAccessPoint = new Dictionary<string, string>();
         public readonly List<string> AccessPointsAddresses = new List<string>();
-        public readonly List<IPackage> SentPackages = new List<IPackage>();
-        
+
+        public event Action<AccessPointFrame> PackageSent;
         
         public string GetAccessPoint(string user)
         {
@@ -28,10 +28,14 @@ namespace Saturn
         public double CurrentTime { get; set; }
 
 
+        void OnPackageSent(AccessPointFrame package)
+        {
+            if (PackageSent != null) PackageSent(package);
+        }
 
         public void Message<T>(string from, T message)
         {
-            SentPackages.Add(new Package<T>(CurrentTime, from, GetAccessPoint(from), message));
+            OnPackageSent(new AccessPointFrame(CurrentTime, from, GetAccessPoint(from), message));
         }
     }
 }

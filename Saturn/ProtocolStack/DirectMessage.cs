@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Saturn.ProtocolStack
 {
+    [JsonSerializer]
     public class DirectMessage
     {
         public readonly string Receiver;

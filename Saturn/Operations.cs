@@ -14,7 +14,7 @@ namespace Saturn
             return world => 
                 {
                     world.UserToAccessPoint[user] = accessPoint;
-                    world.Message(user, new ConnectedMessage());
+                    world.Message(user, "Connected");
                 };
             
         }

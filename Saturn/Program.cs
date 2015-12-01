@@ -15,6 +15,7 @@ namespace Saturn
             {
                 AccessPointsAddresses = { "ap1", "ap2", "ap3" }
             };
+            w.PackageSent += new MessagePrinter().Log;
             var scenarios = new List<Scenario>
             {
                 new WalkingScenario("us1",1,2,new GaussParameters(0.1,0.1)),
@@ -23,6 +24,7 @@ namespace Saturn
             };
             var dispatcher = new Dispatcher(w, scenarios);
             dispatcher.Run(4);
+            Console.ReadKey();
         }
     }
 }
