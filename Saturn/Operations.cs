@@ -19,7 +19,7 @@ namespace Saturn
             
         }
 
-        public static Action<World> DirectMessage(string from, string to, string message="blablabla")
+        public static Action<World> DirectMessage(string from, string to, object message)
         {
             return world =>
                 {

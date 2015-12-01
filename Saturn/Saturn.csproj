@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Analysis\ConversationDelayAnalyzer.cs" />
     <Compile Include="Dispatcher.cs" />
+    <Compile Include="Environment\Tweet.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GaussParameters.cs" />
     <Compile Include="MessagePrinter.cs" />
@@ -56,11 +57,13 @@
     <Compile Include="ProtocolStack\DirectMessage.cs" />
     <Compile Include="ProtocolStack\AccessPointFrame.cs" />
     <Compile Include="ProtocolStack\Serializer.cs" />
+    <Compile Include="Scenarios\BuiltScenario.cs" />
     <Compile Include="Scenarios\ConversationScenario.cs" />
     <Compile Include="Scenarios\Scenario.cs" />
     <Compile Include="Scenarios\ScenarioAction.cs" />
+    <Compile Include="Scenarios\ScenarioBuilder.cs" />
+    <Compile Include="Environment\World.cs" />
     <Compile Include="Scenarios\WalkingScenario.cs" />
-    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

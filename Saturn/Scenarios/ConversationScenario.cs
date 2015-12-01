@@ -31,7 +31,8 @@ namespace Saturn.Scenarios
                 var dtime = Random.PositiveGauss(intensity);
                 yield return Actions.DirectMessage(
                     swap ? user1 : user2,
-                    swap ? user2 : user1).WithDelay(dtime);
+                    swap ? user2 : user1,
+                    "bla-bla-bla").WithDelay(dtime);
                 time += dtime;
                 swap = !swap;
             }
