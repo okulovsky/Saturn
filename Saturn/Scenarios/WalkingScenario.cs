@@ -17,7 +17,7 @@ namespace Saturn.Scenarios
         {
             DepartureTime = departureTime;
             TimeInOneNetwork = timeInOneNetwork;
-            UserId = userId;
+            UserId=userId;
         }
 
         public override IEnumerable<ScenarioAction> GetActions(World world)
@@ -25,7 +25,7 @@ namespace Saturn.Scenarios
             while(true)
             {
                 var ap=Random.Element(world.AccessPointsAddresses);
-                yield return Actions.Connect(UserId, ap).WithDelay(Random.Gauss(TimeInOneNetwork));
+                yield return Actions.Connect(UserId, ap).WithDelay(Random.PositiveGauss(TimeInOneNetwork));
             }
         }
     }

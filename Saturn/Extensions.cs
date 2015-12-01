@@ -24,6 +24,11 @@ namespace Saturn
         {
             return rnd.Gauss(param.Mean, param.Deviation);
         }
+
+        public static double PositiveGauss(this Random rnd, GaussParameters param)
+         {
+             return Math.Abs(rnd.Gauss(param));
+         }
        
 
         public static T Element<T>(this Random rnd, IEnumerable<T> array)

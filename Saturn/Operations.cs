@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saturn.ProtocolStack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,18 @@ namespace Saturn
             return world => 
                 {
                     world.UserToAccessPoint[user] = accessPoint;
-                    world.Message(user,accessPoint,"CONNECTED");
+                    world.Message(user, new ConnectedMessage());
                 };
             
+        }
+
+        public static Action<World> DirectMessage(string from, string to, string message="blablabla")
+        {
+            return world =>
+                {
+                    if (world.IsConnected(from) && world.IsConnected(to))
+                        world.Message(from, new DirectMessage(to, message));
+                };
         }
     }
 }

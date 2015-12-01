@@ -47,6 +47,10 @@
     <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtocolStack\ConnectedMessage.cs" />
+    <Compile Include="ProtocolStack\DirectMessage.cs" />
+    <Compile Include="ProtocolStack\Package.cs" />
+    <Compile Include="Scenarios\ConversationScenario.cs" />
     <Compile Include="Scenarios\Scenario.cs" />
     <Compile Include="Scenarios\ScenarioAction.cs" />
     <Compile Include="Scenarios\WalkingScenario.cs" />
@@ -55,6 +59,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

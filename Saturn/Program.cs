@@ -18,11 +18,11 @@ namespace Saturn
             var scenarios = new List<Scenario>
             {
                 new WalkingScenario("us1",1,2,new GaussParameters(0.1,0.1)),
-                new WalkingScenario("us2",0.5,2.5,new GaussParameters(0.2,0.2))
+                new WalkingScenario("us2",0.5,2.5,new GaussParameters(0.2,0.2)),
+                new ConversationScenario(1.1,05,"us1","us2",new GaussParameters(0.01,0.01))
             };
             var dispatcher = new Dispatcher(w, scenarios);
             dispatcher.Run(4);
-            Console.ReadKey();
         }
     }
 }
