@@ -93,7 +93,9 @@ namespace Saturn.ProtocolStack
 
             var innerSerializer = entry.GetType().GetCustomAttributes(false).OfType<ISerializer>().FirstOrDefault();
             if (innerSerializer == null)
-                return SimpleSerialization(obj, fieldName, SimpleSerialization(entry, null, null));
+                return SimpleSerialization(obj, null,null);
+            if (innerSerializer is JsonSerializer)
+                return SimpleSerialization(obj, null,null);
             if (innerSerializer is IBinarySerializer)
                 return SimpleSerialization(obj, fieldName, Convert.ToBase64String((innerSerializer as IBinarySerializer).SerializeToBytes(entry)));
             if (innerSerializer is ITextSerializer)
