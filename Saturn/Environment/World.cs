@@ -10,7 +10,8 @@ namespace Saturn
     public class World
     {
         public readonly Dictionary<string, string> UserToAccessPoint = new Dictionary<string, string>();
-        public readonly List<string> AccessPointsAddresses = new List<string>();
+        public List<string> AccessPointsAddresses = new List<string>();
+        public List<string> Users = new List<string>();
 
         public event Action<AccessPointFrame> PackageSent;
         

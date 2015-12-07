@@ -9,14 +9,16 @@ namespace Saturn.Scenarios
     public class WalkingScenario : Scenario
     {
         readonly double DepartureTime;
-        readonly GaussParameters TimeInOneNetwork;
         readonly string UserId;
+        readonly double MinTime;
+        readonly double MaxTime;
 
-        public WalkingScenario(string userId, double arrivalTime, double departureTime, GaussParameters timeInOneNetwork)
+        public WalkingScenario(string userId, double arrivalTime, double departureTime, double minTimeInNetwork, double maxTimeInNetwork)
         : base(arrivalTime)
         {
             DepartureTime = departureTime;
-            TimeInOneNetwork = timeInOneNetwork;
+                MinTime=minTimeInNetwork;
+            MaxTime=maxTimeInNetwork;
             UserId=userId;
         }
 
@@ -25,7 +27,7 @@ namespace Saturn.Scenarios
             while(true)
             {
                 var ap=Random.Element(world.AccessPointsAddresses);
-                yield return Actions.Connect(UserId, ap).WithDelay(Random.PositiveGauss(TimeInOneNetwork));
+                yield return Actions.Connect(UserId, ap).WithDelay(Rnd.NextDouble(MinTime, MaxTime));
             }
         }
     }

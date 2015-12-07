@@ -17,7 +17,7 @@ namespace Saturn.Scenarios
             bool vowel = Scenario.Random.NextBool(0.3);
             for (int i = 0; i < length; i++)
             {
-                if (vowel) builder.Append(Scenario.Random.Element(vowel));
+                if (vowel) builder.Append(Scenario.Random.Element(vowels));
                 else builder.Append(Scenario.Random.Element(consonants));
                 vowel = !vowel;
             }
@@ -33,7 +33,10 @@ namespace Saturn.Scenarios
         {
             var builder = new StringBuilder();
             while (builder.Length < length)
+            {
                 Word(builder);
+                builder.Append(" ");
+            }
             return builder.ToString();
         }
 

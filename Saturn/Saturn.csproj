@@ -57,6 +57,7 @@
     <Compile Include="ProtocolStack\DirectMessage.cs" />
     <Compile Include="ProtocolStack\AccessPointFrame.cs" />
     <Compile Include="ProtocolStack\Serializer.cs" />
+    <Compile Include="Rnd.cs" />
     <Compile Include="Scenarios\BuiltScenario.cs" />
     <Compile Include="Scenarios\ConversationScenario.cs" />
     <Compile Include="Scenarios\Language.cs" />

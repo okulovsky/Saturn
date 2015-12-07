@@ -13,7 +13,7 @@ namespace Saturn.Scenarios
         public readonly ScenarioBuiderPauseRequired pauseRequired;
         double startTime;
         Action<World> lastAction;
-        List<ScenarioAction> list=new List<ScenarioAction>();
+        List<Tuple<Action<World>, Func<double>>> list = new List<Tuple<Action<World>, Func<double>>>();
         public ScenarioBuilder()
         {
             actionRequired = new ScenarioBuiderActionRequired(this);
@@ -28,13 +28,25 @@ namespace Saturn.Scenarios
         {
             lastAction = action;
         }
-        public void CompleteAction(double pause)
+        public void CompleteAction(Func<double> pause)
         {
-            list.Add(new ScenarioAction(pause, lastAction));
+            list.Add(Tuple.Create(lastAction, pause));
             lastAction = null;
         }
+       
+        public BuiltScenario Create()
+        {
+            return new BuiltScenario(startTime,list);
+        }
+
+        public void Iterate(int count)
+        {
+            int p = list.Count;
+            for (int i = 0; i < count; i++)
+                for (int j = 0; j < p; j++)
+                    list.Add(list[j]);
+        }
         
-        public static Random Random=new Random();
     }
 
     class ScenarioBuiderActionRequired
@@ -53,6 +65,17 @@ namespace Saturn.Scenarios
             builder.SetLastAction(Actions.DirectMessage(from,to, message));
             return builder.pauseRequired;
         }
+
+        public BuiltScenario Create()
+        {
+            return builder.Create();
+        }
+
+        public ScenarioBuiderActionRequired Iterate(int count)
+        {
+            builder.Iterate(count);
+            return this;
+        }
     }
 
     class ScenarioBuiderPauseRequired
@@ -62,7 +85,7 @@ namespace Saturn.Scenarios
 
         public ScenarioBuiderActionRequired UniformDelay(double minTime, double maxTime)
         {
-            builder.CompleteAction(ScenarioBuilder.Random.NextDouble() * (maxTime - minTime) + minTime);
+            builder.CompleteAction(()=>Scenario.Random.NextDouble(minTime,maxTime));
             return builder.actionRequired;
         }
     }

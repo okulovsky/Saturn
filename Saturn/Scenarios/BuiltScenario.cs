@@ -8,16 +8,17 @@ namespace Saturn.Scenarios
 {
     class BuiltScenario : Scenario
     {
-        List<ScenarioAction> actions;
+        List<Tuple<Action<World>, Func<double>>> actions;
 
-        public BuiltScenario(double startTime, List<ScenarioAction> actions)
+        public BuiltScenario(double startTime, List<Tuple<Action<World>, Func<double>>> actions)
         : base(startTime)
         {
             this.actions = actions;
         }
         public override IEnumerable<ScenarioAction> GetActions(World world)
         {
-            return actions;
+            foreach (var e in actions)
+                yield return new ScenarioAction(e.Item2(), e.Item1);
         }
     }
 }
