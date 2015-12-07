@@ -29,6 +29,21 @@ namespace Saturn
          {
              return Math.Abs(rnd.Gauss(param));
          }
+
+        public static double NextDouble(this Random rnd, double min, double max)
+        {
+            return rnd.NextDouble() * (max - min) + min;
+        }
+
+        public static int  NextInt(this Random rnd, int min, int max)
+        {
+            return (int)(rnd.NextDouble() * (max - min)) + min;
+        }
+
+        public static bool NextBool(this Random rnd, double probability)
+        {
+            return rnd.NextDouble() < probability;
+        }
        
 
         public static T Element<T>(this Random rnd, IEnumerable<T> array)
