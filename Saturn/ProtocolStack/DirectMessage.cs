@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Saturn.ProtocolStack
 {
     [JsonSerializer]
-    public class DirectMessage
+    public class DirectMessageFrame
     {
         public readonly string Receiver;
         [EntryField]
         public readonly object Message;
-        public DirectMessage(string receiver, object message)
+        public DirectMessageFrame(string receiver, object message)
         {
             this.Receiver = receiver;
             this.Message = message;

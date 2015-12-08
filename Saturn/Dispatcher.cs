@@ -1,4 +1,4 @@
-﻿using Saturn.Scenarios;
+﻿using Saturn.NewScenarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +9,16 @@ namespace Saturn
 {
     public class Dispatcher
     {
-        List<Scenario> scenarios;
+        List<IScenario> scenarios;
         World world;
 
         class ScenarioInstance
         {
-            public IEnumerator<ScenarioAction> actions;
+            public IEnumerator<double> actions;
             public double nextActionTime;
         }
 
-        public Dispatcher(World world, List<Scenario> scenarios)
+        public Dispatcher(World world, List<IScenario> scenarios)
         {
             this.world = world;
             this.scenarios = scenarios;
@@ -26,21 +26,22 @@ namespace Saturn
 
         public void Run(double totalTime)
         {
-            var queue =
-                scenarios.Select(z => new ScenarioInstance { actions = z.GetActions(world).GetEnumerator(), nextActionTime = z.BeginningTime })
-                .Where(z => z.actions.MoveNext())
-                .ToList();
-            world.CurrentTime = queue.Min(z => z.nextActionTime);
+			world.CurrentTime = 0;
+            var queue = scenarios
+				.Select(z => new ScenarioInstance { actions = z.PerformActions(world).GetEnumerator() })
+				.ToList();
             while(world.CurrentTime<totalTime)
             {
                 if (queue.Count == 0) break;
                 var currentAction = queue.ArgMin(z => z.nextActionTime);
                 world.CurrentTime = currentAction.nextActionTime;
-                currentAction.actions.Current.Action(world);
-                currentAction.nextActionTime += currentAction.actions.Current.Delay;
-
-                if (!currentAction.actions.MoveNext())
-                    queue.Remove(currentAction);
+				var alive = currentAction.actions.MoveNext();
+				if (!alive)
+				{
+					queue.Remove(currentAction);
+					continue;
+				}
+				currentAction.nextActionTime += currentAction.actions.Current;
             }
         }
     }

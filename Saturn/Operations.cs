@@ -24,7 +24,7 @@ namespace Saturn
             return world =>
                 {
                     if (world.IsConnected(from) && world.IsConnected(to))
-                        world.Message(from, new DirectMessage(to, message));
+                        world.Message(from, new DirectMessageFrame(to, message));
                 };
         }
     }

@@ -51,6 +51,13 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="GaussParameters.cs" />
     <Compile Include="MessagePrinter.cs" />
+    <Compile Include="NewScenarios\Achitecture\CombinedScenario.cs" />
+    <Compile Include="NewScenarios\PrimitiveScenarios\DirectReliableChat.cs" />
+    <Compile Include="NewScenarios\PrimitiveScenarios\DirectReliableMessage.cs" />
+    <Compile Include="NewScenarios\Achitecture\IScenario.cs" />
+    <Compile Include="NewScenarios\PrimitiveScenarios\ScenarioAction.cs" />
+    <Compile Include="NewScenarios\PrimitiveScenarios\Sleep.cs" />
+    <Compile Include="NewScenarios\PrimitiveScenarios\RandomWalking.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,14 +65,7 @@
     <Compile Include="ProtocolStack\AccessPointFrame.cs" />
     <Compile Include="ProtocolStack\Serializer.cs" />
     <Compile Include="Rnd.cs" />
-    <Compile Include="Scenarios\BuiltScenario.cs" />
-    <Compile Include="Scenarios\ConversationScenario.cs" />
-    <Compile Include="Scenarios\Language.cs" />
-    <Compile Include="Scenarios\Scenario.cs" />
-    <Compile Include="Scenarios\ScenarioAction.cs" />
-    <Compile Include="Scenarios\ScenarioBuilder.cs" />
     <Compile Include="Environment\World.cs" />
-    <Compile Include="Scenarios\WalkingScenario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Saturn.Scenarios
+namespace Saturn.NewScenarios
 {
     public class ScenarioAction
     {
