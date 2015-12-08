@@ -6,21 +6,30 @@ using System.Threading.Tasks;
 
 namespace Saturn.NewScenarios
 {
-	class DirectReliableChat : CombinedScenario
+	class Chat : CombinedScenario
 	{
 		string user1;
 		string user2;
 		int chatLength;
 		Func<object> messageSource;
 		Func<double> messageDelayGenerator;
+		Func<IMessage> messenger;
 
-		public DirectReliableChat(string user1, string user2, int chatLength, Func<double> messageDelayGenerator, Func<object> messageSource)
+		public Chat(
+			string user1, 
+			string user2, 
+			int chatLength, 
+			Func<double> messageDelayGenerator, 
+			Func<object> messageSource,
+			Func<IMessage> messenger
+			)
 		{
 			this.user1 = user1;
 			this.user2 = user2;
 			this.chatLength = chatLength;
 			this.messageSource = messageSource;
 			this.messageDelayGenerator = messageDelayGenerator;
+			this.messenger = messenger;
 
 		}
 
@@ -31,12 +40,13 @@ namespace Saturn.NewScenarios
 				for (int i = 0; i < chatLength; i++)
 				{
 					bool speak1 = i % 2 == 0;
-					yield return new DirectReliableMessage(
+					yield return messenger().Prepare(
 						speak1 ? user1 : user2,
 						speak1 ? user2 : user1,
 						messageSource(),
 						messageDelayGenerator()
 						);
+					
 				}
 			}
 		}

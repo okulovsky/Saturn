@@ -30,11 +30,12 @@ namespace Saturn
             var queue = scenarios
 				.Select(z => new ScenarioInstance { actions = z.PerformActions(world).GetEnumerator() })
 				.ToList();
-            while(world.CurrentTime<totalTime)
+            while(true)
             {
                 if (queue.Count == 0) break;
                 var currentAction = queue.ArgMin(z => z.nextActionTime);
                 world.CurrentTime = currentAction.nextActionTime;
+				if (world.CurrentTime > totalTime) break;
 				var alive = currentAction.actions.MoveNext();
 				if (!alive)
 				{

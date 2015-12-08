@@ -24,13 +24,22 @@ namespace Saturn
 			var scenarios = new List<IScenario>();
 
 			foreach (var e in world.Users)
-				scenarios.Add(new RandomWalking(e, () => Rnd.NextDouble(10, 30)));
+				scenarios.Add(new RandomWalking(e, () => 1000000));
 
-			scenarios.Add(new DirectReliableChat("user1", "user2", 5, () => 3, () => "A"));
+			scenarios.Add(new Chat("user1", "user2", 5, () => 3, () => "A", ()=>new DirectMessage()));
+
+			scenarios.Add(new ConcatScenario(new Sleep(10),
+				new Chat("user1", "user2", 5, () => 3, () => "B", () => new MediatedMessage<MediatedMessageFrame> { Mediator = "user0" })
+				));
+
 
             var dispatcher=new Dispatcher(world, scenarios);
             dispatcher.Run(100);
             Console.ReadKey();
+
+			//идеи сценариев:
+			// идея с отравлением, сценарий - посещение ресторана. 
+			// 
         }
     }
 }
