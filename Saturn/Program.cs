@@ -18,7 +18,7 @@ namespace Saturn
             var world = new World
             {
                 AccessPointsAddresses = Enumerable.Range(0,10).Select(z=>"ap"+z).ToList(),
-                Users = Enumerable.Range(0,100).Select(z=>"user"+z).ToList()
+                Users = Enumerable.Range(0,20).Select(z=>"user"+string.Format("{0:D3}",z)).ToList()
             };
             world.PackageSent += new MessagePrinter().Log;
 
@@ -26,6 +26,9 @@ namespace Saturn
 
 			foreach (var e in world.Users)
 				scenarios.Add(new RandomWalking(e, () => Rnd.NextDouble(10, 30)));
+
+            var graph = Connections.CreateUniformConnections(world.Users, 5);
+            var list = graph.Connections.OrderBy(z=>z.Key).ToDictionary(z => z.Key, z => z.Value.Count);
 
 
 

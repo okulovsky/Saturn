@@ -10,16 +10,16 @@ namespace Saturn.Environment
     {
         public readonly Dictionary<string,HashSet<string>> Connections=new Dictionary<string,HashSet<string>>();
         
-        public void Add(string a, string b)
+        void AddInternal(string a, string b)
         {
-            if (a.CompareTo(b)>0)
-            {
-                Add(b, a);
-                return;
-            }
             if (!Connections.ContainsKey(a))
                 Connections[a] = new HashSet<string>();
             Connections[a].Add(b);
+        }
+        public void Add(string a, string b)
+        {
+            AddInternal(a, b);
+            AddInternal(b, a);
         }
 
         public bool IsConnected(string a, string b)
