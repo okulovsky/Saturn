@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,7 @@ namespace Saturn.ProtocolStack
     {
         override protected string InnerSerialization(object obj)
         {
-            var jsonObject = JObject.FromObject(obj);
-            return jsonObject.ToString();
+            return JsonConvert.SerializeObject(obj);
         }
     }
 }

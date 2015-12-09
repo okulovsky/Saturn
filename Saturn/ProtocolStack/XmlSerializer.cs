@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,15 +11,16 @@ namespace Saturn.ProtocolStack
 {
     public class XmlSerializer : TextSerializer
     {
+        class Doc
+        {
+            public object Document { get; set; }
+        }
         protected override string InnerSerialization(object obj)
         {
-            var xsSubmit = new System.Xml.Serialization.XmlSerializer(obj.GetType());
-            using (StringWriter sww = new StringWriter())
-            using (XmlWriter writer = XmlWriter.Create(sww))
-            {
-                xsSubmit.Serialize(writer, obj);
-                return sww.ToString(); // Your XML
-            }
+            var doc = new Doc { Document = obj };
+            var myXmlNode = JsonConvert.DeserializeXmlNode(JsonConvert.SerializeObject(doc));
+            var result = myXmlNode.InnerXml;
+            return result;
         }
     }
 }
