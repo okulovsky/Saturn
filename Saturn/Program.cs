@@ -1,4 +1,5 @@
-﻿using Saturn.NewScenarios;
+﻿using Saturn.Environment;
+using Saturn.NewScenarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Saturn
             var world = new World
             {
                 AccessPointsAddresses = Enumerable.Range(0,10).Select(z=>"ap"+z).ToList(),
-                Users = Enumerable.Range(0,3).Select(z=>"user"+z).ToList()
+                Users = Enumerable.Range(0,100).Select(z=>"user"+z).ToList()
             };
             world.PackageSent += new MessagePrinter().Log;
 
@@ -26,7 +27,7 @@ namespace Saturn
 			foreach (var e in world.Users)
 				scenarios.Add(new RandomWalking(e, () => Rnd.NextDouble(10, 30)));
 
-			scenarios.Add(new DirectReliableChat("user1", "user2", 5, () => 3, () => "A"));
+
 
             var dispatcher=new Dispatcher(world, scenarios);
             dispatcher.Run(100);
