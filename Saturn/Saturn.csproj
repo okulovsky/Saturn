@@ -63,7 +63,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProtocolStack\DirectMessage.cs" />
     <Compile Include="ProtocolStack\AccessPointFrame.cs" />
+    <Compile Include="ProtocolStack\JsonSerializer.cs" />
     <Compile Include="ProtocolStack\Serializer.cs" />
+    <Compile Include="ProtocolStack\TextSerializer.cs" />
+    <Compile Include="ProtocolStack\TypeWrapper.cs" />
+    <Compile Include="ProtocolStack\XmlSerializer.cs" />
     <Compile Include="Rnd.cs" />
     <Compile Include="Environment\World.cs" />
   </ItemGroup>
