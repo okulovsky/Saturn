@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace Saturn.ProtocolStack
 {
-    [JsonSerializer]
+    [XmlSerializer]
+    
     public class DirectMessageFrame
     {
-        public readonly string Receiver;
+        public  string Receiver;
         [EntryField]
-        public readonly object Message;
+        public object Message;
         public DirectMessageFrame(string receiver, object message)
         {
             this.Receiver = receiver;
             this.Message = message;
         }
+
+        private DirectMessageFrame() { }
     }
 }

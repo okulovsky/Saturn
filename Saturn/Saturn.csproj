@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="Analysis\ConversationDelayAnalyzer.cs" />
     <Compile Include="Dispatcher.cs" />
-    <Compile Include="Environment\Tweet.cs" />
+    <Compile Include="Environment\Blog.cs" />
+    <Compile Include="Environment\ConnectionGraph.cs" />
+    <Compile Include="Environment\Connections.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GaussParameters.cs" />
     <Compile Include="MessagePrinter.cs" />
@@ -65,9 +67,13 @@
     <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProtocolStack\DirectMessage.cs" />
-    <Compile Include="ProtocolStack\AccessPointFrame.cs" />
-    <Compile Include="ProtocolStack\Serializer.cs" />
+    <Compile Include="ProtocolStack\Frames\DirectMessageFrame.cs" />
+    <Compile Include="ProtocolStack\Frames\AccessPointFrame.cs" />
+    <Compile Include="ProtocolStack\Serializers\JsonSerializer.cs" />
+    <Compile Include="ProtocolStack\Serializers\Serializer.cs" />
+    <Compile Include="ProtocolStack\Serializers\TextSerializer.cs" />
+    <Compile Include="ProtocolStack\Serializers\TypeWrapper.cs" />
+    <Compile Include="ProtocolStack\Serializers\XmlSerializer.cs" />
     <Compile Include="Rnd.cs" />
     <Compile Include="Environment\World.cs" />
   </ItemGroup>

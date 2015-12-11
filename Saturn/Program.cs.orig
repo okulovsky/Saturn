@@ -33,10 +33,13 @@ namespace Saturn
 				new Chat("user1", "user2", 5, () => 3, () => "B", () => new MediatedMessage<MediatedMessageFrame> { Mediator = "user0" })
 				));
 
+<<<<<<< HEAD
+=======
             var graph = Connections.CreateUniformConnections(world.Users, 5);
             var list = graph.Connections.OrderBy(z=>z.Key).ToDictionary(z => z.Key, z => z.Value.Count);
 
 
+>>>>>>> e9a8a03d534c4a07ba54c85751f5328daa875f6a
 
             var dispatcher=new Dispatcher(world, scenarios);
             dispatcher.Run(100);

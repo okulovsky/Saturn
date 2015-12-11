@@ -21,6 +21,8 @@ namespace Saturn.ProtocolStack
             AccessPoint = accessPoint;
             Entry = entry;
         }
+
+        private AccessPointFrame() { }
     }
 
   
