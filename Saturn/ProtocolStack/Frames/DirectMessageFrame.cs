@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Saturn.ProtocolStack
 {
-    [XmlSerializer]
+    [JsonSerializer]
     
     public class DirectMessageFrame
     {

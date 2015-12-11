@@ -52,10 +52,11 @@
     <Compile Include="Environment\Connections.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GaussParameters.cs" />
+    <Compile Include="Language.cs" />
     <Compile Include="MessagePrinter.cs" />
     <Compile Include="NewScenarios\Achitecture\CombinedScenario.cs" />
     <Compile Include="NewScenarios\Achitecture\ConcatScenario.cs" />
-    <Compile Include="NewScenarios\Messages\MediatedMessageFrame.cs" />
+    <Compile Include="NewScenarios\Messages\MediatedMessageFrames.cs" />
     <Compile Include="NewScenarios\Messages\IMessage.cs" />
     <Compile Include="NewScenarios\PrimitiveScenarios\Chat.cs" />
     <Compile Include="NewScenarios\Messages\DirectMessage.cs" />

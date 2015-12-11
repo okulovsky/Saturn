@@ -27,7 +27,7 @@ namespace Saturn.ProtocolStack
                 return InnerSerialization(obj);
 
             var innerSerializer = entry.GetType().GetCustomAttributes(false).OfType<ISerializer>().FirstOrDefault();
-            if (innerSerializer == null || innerSerializer.GetType()==this.GetType())
+            if (innerSerializer == null)
                 return InnerSerialization(obj);
 
             object temp=null;
